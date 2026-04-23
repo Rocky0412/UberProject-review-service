@@ -25,5 +25,9 @@ public class Booking extends BaseModel {
     private long distance;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private  Review review;
+    @ManyToOne
+    private Driver driver;
+    @ManyToOne
+    private Passengers passengers;
 
 }

@@ -21,7 +21,7 @@ public class ReviewService implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-        Review review = Review.builder()
+        /*** Review review = Review.builder()
                 .content("Ride was awesome")
                 .rating(4.5)
                 .build();
@@ -31,7 +31,7 @@ public class ReviewService implements CommandLineRunner {
                 .bookingStatus(BookingStatus.COMPLETED)
                 .review(review)
                 .build();
-        bookingRepositories.save(book);
+        bookingRepositories.save(book); ***/
 
 
     }
