@@ -1,13 +1,11 @@
 package org.example.uberreviewservice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "bookingreview")
+@Table(name = "BookingReview")
 @Data
 @Builder
 @AllArgsConstructor

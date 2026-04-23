@@ -1,13 +1,21 @@
 package org.example.uberreviewservice.services;
 
+import org.example.uberreviewservice.model.Booking;
+import org.example.uberreviewservice.model.BookingStatus;
 import org.example.uberreviewservice.model.Review;
+import org.example.uberreviewservice.repositories.BookingRepositories;
 import org.example.uberreviewservice.repositories.ReviewRepositories;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class ReviewService implements CommandLineRunner {
-    private ReviewRepositories reviewRepositories;
+    private  ReviewRepositories reviewRepositories;
+    @Autowired
+    private BookingRepositories bookingRepositories;
     public ReviewService(ReviewRepositories reviewRepositories) {
         this.reviewRepositories = reviewRepositories;
     }
@@ -17,12 +25,14 @@ public class ReviewService implements CommandLineRunner {
                 .content("Ride was awesome")
                 .rating(4.5)
                 .build();
-        reviewRepositories.save(review);
-        review.setRating(4.6);
-        reviewRepositories.save(review);
-       Review r= reviewRepositories.findById(1L).
-               orElseThrow(() -> new RuntimeException("Review not found"));
-       r.setRating(5);
-       reviewRepositories.save(r);
+        Booking book= Booking.builder()
+                .startTime(new Date())
+                .endTime(new Date())
+                .bookingStatus(BookingStatus.COMPLETED)
+                .review(review)
+                .build();
+        bookingRepositories.save(book);
+
+
     }
 }
