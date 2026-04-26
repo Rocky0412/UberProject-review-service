@@ -6,9 +6,10 @@ import org.example.uberreviewservice.model.Enum.BookingStatus;
 
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Entity
-@Data
+@Setter
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

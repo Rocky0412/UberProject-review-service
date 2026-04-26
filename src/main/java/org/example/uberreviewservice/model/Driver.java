@@ -2,17 +2,15 @@ package org.example.uberreviewservice.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="Driver")
@@ -22,6 +20,6 @@ public class Driver extends BaseModel{
     private String lastName;
     @Column(unique = true,nullable = false)
     private String licenceNo;
-    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
-    List<Booking> reviews = new ArrayList<>(); // A driver as many booking
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Booking> bookings = new ArrayList<>(); // A driver as many booking
 }
