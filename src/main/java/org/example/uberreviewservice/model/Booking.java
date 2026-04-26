@@ -1,33 +1,40 @@
 package org.example.uberreviewservice.model;
 
-
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.TenantId;
+import org.example.uberreviewservice.model.Enum.BookingStatus;
 
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "Booking")
 public class Booking extends BaseModel {
 
-
+    private Date startDate;
+    private Date endDate;
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
+    private long longDuration;
+    private long bookingAmount;
 
-    private Date startTime;
-    private Date endTime;
-    private long distance;
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private  Review review;
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL) // we have defined a one-to-one relationship between booking and review
+    @JoinColumn(name = "review_id")
+    private Review bookingReview;
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="drive_id")
     private Driver driver;
+
     @ManyToOne
-    private Passengers passengers;
+    @JoinColumn(name = "passenger_id")
+    private  Passengers  passengers;
+
+
 
 }

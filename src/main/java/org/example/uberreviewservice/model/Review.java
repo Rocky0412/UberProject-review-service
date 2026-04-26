@@ -5,15 +5,19 @@ import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "BookingReview")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="booking_review")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Review extends BaseModel{
 
     @Column(nullable = false)
     private String content;
+    @Column(nullable = false)
     private  double rating;
+
+
 
 }
