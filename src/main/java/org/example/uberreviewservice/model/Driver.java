@@ -3,6 +3,8 @@ package org.example.uberreviewservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,12 @@ public class Driver extends BaseModel{
     private String lastName;
     @Column(unique = true,nullable = false)
     private String licenceNo;
-    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    List<Booking> bookings = new ArrayList<>(); // A driver as many booking
+
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
+    List<Booking> bookings; // A driver as many booking
+
+    {
+        bookings = new ArrayList<>();
+    }
 }

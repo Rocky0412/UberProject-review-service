@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface DriverRepositories extends JpaRepository<Driver, Long> {
     Driver findByLicenceNoAndId(String licenceNo, Long id);
+    List<Driver> findAllByIdIn(List<Long> ids);
 }

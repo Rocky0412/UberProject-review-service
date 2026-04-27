@@ -46,16 +46,34 @@ public class ReviewService implements CommandLineRunner {
                 .build();
 
 
-        Optional<Driver> driver = Optional.ofNullable(driverRepositories.findByLicenceNoAndId("DH123", 1L));
-        if(driver.isPresent()) {
-            Driver d = driver.get();   // ✅ extract actual object
-            System.out.println(d.getFirstName());
-            List<Booking> bookings = d.getBookings();
-            for (Booking booking : bookings) {
-                System.out.println(booking.getId());
+//        Optional<Driver> driver = Optional.ofNullable(driverRepositories.findByLicenceNoAndId("DH123", 1L));
+//        if(driver.isPresent()) {
+//            Driver d = driver.get();   // ✅ extract actual object
+//            System.out.println(d.getFirstName());
+//            List<Booking> bookings = d.getBookings();
+//            for (Booking booking : bookings) {
+//                System.out.println(booking.getId());
+//            }
+//
+//        }
+//        System.out.println("Facing N+1 problems");
+//        List<Driver> drivers = driverRepositories.findAll();
+//        if(!drivers.isEmpty()){
+//            for(Driver d:drivers){
+//                System.out.println(d.getLicenceNo());
+//                System.out.println("==============================");
+//                for(Booking book : d.getBookings()){
+//                    System.out.println(book.getBookingStatus());
+//                }
+//                System.out.println("==============================");
+//            }
+//        }
+        List<Driver> drivers = driverRepositories.findAllByIdIn((List.of(1L,2L)));
+        for (Driver driver : drivers) {
+            for(Booking book : driver.getBookings()){
+                System.out.println(book.getDriver().getId());
             }
-
         }
 
-    }
+   }
 }
