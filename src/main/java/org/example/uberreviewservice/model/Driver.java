@@ -24,7 +24,7 @@ public class Driver extends BaseModel{
     private String licenceNo;
 
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
+
     List<Booking> bookings; // A driver as many booking
 
     {

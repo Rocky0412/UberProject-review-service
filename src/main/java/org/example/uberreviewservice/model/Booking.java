@@ -23,11 +23,6 @@ public class Booking extends BaseModel {
     private long longDuration;
     private long bookingAmount;
 
-    @OneToOne(cascade = CascadeType.ALL) // we have defined a one-to-one relationship between booking and review
-    @JoinColumn(name = "review_id")
-    private Review bookingReview;
-
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="drive_id")
     private Driver driver;
