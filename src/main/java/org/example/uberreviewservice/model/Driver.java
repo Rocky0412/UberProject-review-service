@@ -22,6 +22,7 @@ public class Driver extends BaseModel{
     private String lastName;
     @Column(unique = true,nullable = false)
     private String licenceNo;
+    private String password;
 
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
